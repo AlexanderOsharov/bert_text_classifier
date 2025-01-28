@@ -12,4 +12,7 @@ setup(
         'seaborn',
         'matplotlib',
     ],
+    package_data={
+        'bert_text_classifier': ['data/dataset.json']
+    }
 )
