@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, auc
 import seaborn as sns
 import matplotlib.pyplot as plt
-from transformers import BertTokenizer, BertForSequenceClassification, Trainer, TrainingArguments
+from transformers import BertTokenizer, BertModel, Trainer, TrainingArguments
 from sklearn.model_selection import train_test_split
 from os.path import join, dirname, abspath
 import torch
@@ -70,7 +70,7 @@ class BertTextClassifier:
         train_dataset = TextDataset(train_encodings)
         test_dataset = TextDataset(test_encodings)
 
-        self.model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
+        self.model = BertModel.from_pretrained('bert-base-uncased', num_labels=2)
 
         training_args = TrainingArguments(
             output_dir=self.model_path,
