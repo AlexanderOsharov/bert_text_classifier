@@ -67,21 +67,10 @@ class BertTextClassifier:
         train_encodings = self.encode_texts(train_texts, train_labels, self.tokenizer)
         test_encodings = self.encode_texts(test_texts, test_labels, self.tokenizer)
 
-        class TextDataset(Dataset):
-            def __init__(self, encodings):
-                self.encodings = encodings
-
-            def __getitem__(self, idx):
-                item = {key: val[idx] for key, val in self.encodings.items()}
-                return item
-
-            def __len__(self):
-                return len(self.encodings['input_ids'])
-
         train_dataset = TextDataset(train_encodings)
         test_dataset = TextDataset(test_encodings)
 
-        self.model = BertForSequenceClassification.from_pretrained('bert-base-multilingual-cased', num_labels=2)
+        self.model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
 
         training_args = TrainingArguments(
             output_dir=self.model_path,
