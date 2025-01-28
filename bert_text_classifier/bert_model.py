@@ -63,7 +63,7 @@ class BertTextClassifier:
         texts = [self.preprocess_text(t) for t in texts]
         train_texts, test_texts, train_labels, test_labels = train_test_split(texts, labels, test_size=0.2, random_state=42)
 
-        self.tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
+        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
         train_encodings = self.encode_texts(train_texts, train_labels, self.tokenizer)
         test_encodings = self.encode_texts(test_texts, test_labels, self.tokenizer)
 
